@@ -102,7 +102,7 @@ class TestMinitestAssertionsJson < Minitest::Test
   end
 
   def test_assert
-    @assertion_count = 33
+    @assertion_count = 2
 
     @tc.assert_equal true, @tc.assert(true), "returns true on success"
   end
