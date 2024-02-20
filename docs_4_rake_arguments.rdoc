@@ -1,0 +1,13 @@
+There are differences between A, FILTER and TESTOPTS.
+
+The latter two are deprecated, but specially TESTOPTS is still widely used.
+
+When using A, the argument must be in quotes.
+
+TODO: Write list of translations from TESTOPTS to A. E.g.
+
+    TESTOPTS=-v -> A="-v"
+
+=== See how the arguments are actually used
+
+I'm not sure if this is possible, but perhaps one can pass an argument to rake such that rake will echo its commands. Maybe this can even be done as a dry run. That way one can test if the arguments are read and used as intended.
