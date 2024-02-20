@@ -1,0 +1,5 @@
+Add "Common pitfall" to those subheadings
+
+
+* Common pitfall: Minitest's own tests require UTF-8 external encoding.
+* Common pitfall: Minitest's own tests require GNU (or similar) diff.
