@@ -1,9 +1,0 @@
-=== Hoe
-
-When looking in the Rakefile, it is a lot shorter than most other projects, and in fact only contains one task. But if looking at the list of tasks (by running `rake -T -A`), the list is very long, and includes tasks such as `package` which will build the package. This is because of Hoe, which creates a bunch of targets in a standard way. Unfortunately Hoe is not widely used and therefore not well documented.
-
-To install hoe:
-
-    $ gem install hoe
-
-This creates a command line tool, `sow`, which however you will not need to use directly. After installing hoe you can now run Rake.
