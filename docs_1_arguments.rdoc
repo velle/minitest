@@ -1,0 +1,32 @@
+=== Running test verbosely
+
+By default only tests resulting in Failure (F) or Error (E) will have their details printed. If you wish to see more details for all tests, the `-v` (or equivalently `--verbose`) option must be set for the test case. When executing tests via Rake, this option can be set like this:
+
+    $ rake test A="-v"
+
+=== Passing arguments to tests
+
+When using rake to execute tests, in the background it actually runs each test case as a script. To run the test test_demo.rb one can in fact just run
+
+    $ ruby test/test_demo.rb
+
+However, many tests do require being run in a specific environment in order to produce a useful result. Generally rake is used to run tests.
+
+Considering each test ruby file as a script, one can pass arguments to it. E.g.
+
+    $ ruby test/test_demo.rb -v
+
+To achieve the same while calling from rake one must provide the arguments as a string to the A argument of rake. E.g.
+
+    $ rake test A="-v"
+
+Be careful with proper quoting, and the differences between A, FILTER and TESTOPTS. The latter two are deprecated but still widely used. Read more about those pitfalls here (LINK).
+
+The above can also be done with one of the following solutions, where an `A` environment variable will be set for Rake to read. This will be familiar to many Unix users.
+
+    $ A="-v" rake test
+
+or
+
+    $ export A="-v"
+    $ rake test
