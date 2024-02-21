@@ -45,49 +45,6 @@ class TestMinitestAssertionsJson < Minitest::Test
                  "expected #{@assertion_count} assertions to be fired during the test, not #{@tc.assertions}")
   end
 
-  def assert_deprecated name
-    dep = /DEPRECATED: #{name}. From #{__FILE__}:\d+(?::.*)?/
-    dep = "" if $-w.nil?
-
-    assert_output nil, dep do
-      yield
-    end
-  end
-
-  def assert_triggered expected, klass = Minitest::Assertion
-    e = assert_raises klass do
-      yield
-    end
-
-    msg = e.message.sub(/(---Backtrace---).*/m, '\1')
-    msg.gsub!(/\(oid=[-0-9]+\)/, "(oid=N)")
-    msg.gsub!(/(\d\.\d{6})\d+/, '\1xxx') # normalize: ruby version, impl, platform
-
-    assert_msg = Regexp === expected ? :assert_match : :assert_equal
-    self.send assert_msg, expected, msg
-  end
-
-  def assert_unexpected expected
-    expected = Regexp.new expected if String === expected
-
-    assert_triggered expected, Minitest::UnexpectedError do
-      yield
-    end
-  end
-
-  def clean s
-    s.gsub(/^ {6,10}/, "")
-  end
-
-  def non_verbose
-    orig_verbose = $VERBOSE
-    $VERBOSE = false
-
-    yield
-  ensure
-    $VERBOSE = orig_verbose
-  end
-
   def test_assert
     @assertion_count = 2
     @tc.assert_equal true, @tc.assert(true), "returns true on success"
