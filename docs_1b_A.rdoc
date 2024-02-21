@@ -1,0 +1,9 @@
+The docs say:
+
+    TESTOPTS      :: Deprecated, same as A
+    FILTER        :: Deprecated, same as A
+
+But they are different, its not just a renaming, so its not the "same as". How they are used is different. Instead write:
+
+    TESTOPTS      :: Deprecated, use A instead
+    FILTER        :: Deprecated, use A instead
