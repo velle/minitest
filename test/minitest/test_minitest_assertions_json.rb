@@ -73,7 +73,7 @@ class TestMinitestAssertionsJson < Minitest::Test
     assert_triggered expected, Minitest::UnexpectedError do
       yield
     end
-  end (I have not committed anything yet)
+  end
 
   def clean s
     s.gsub(/^ {6,10}/, "")
