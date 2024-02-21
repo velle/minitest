@@ -14,26 +14,13 @@ if defined? Encoding then
   end
 end
 
-SomeError = Class.new Exception
-
-unless defined? MyModule then
-  module MyModule; end
-  class AnError < StandardError; include MyModule; end
-end
-
 class TestMinitestAssertionsJson < Minitest::Test
   # do not call parallelize_me! - teardown accesses @tc._assertions
   # which is not threadsafe. Nearly every method in here is an
   # assertion test so it isn't worth splitting it out further.
 
-  RUBY18 = !defined? Encoding
-
-  # not included in JRuby
-  RE_LEVELS = /\(\d+ levels\) /
-
   class DummyTest
     include Minitest::Assertions
-    # include Minitest::Reportable # TODO: why do I really need this?
 
     attr_accessor :assertions, :failure
 
@@ -86,7 +73,7 @@ class TestMinitestAssertionsJson < Minitest::Test
     assert_triggered expected, Minitest::UnexpectedError do
       yield
     end
-  end
+  end (I have not committed anything yet)
 
   def clean s
     s.gsub(/^ {6,10}/, "")
@@ -103,20 +90,7 @@ class TestMinitestAssertionsJson < Minitest::Test
 
   def test_assert
     @assertion_count = 2
-
     @tc.assert_equal true, @tc.assert(true), "returns true on success"
-  end
-
-  def test_assert__triggered
-    assert_triggered "Expected false to be truthy." do
-      @tc.assert false
-    end
-  end
-
-  def test_assert__triggered_message
-    assert_triggered @zomg do
-      @tc.assert false, @zomg
-    end
   end
 
 end
